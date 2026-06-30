@@ -13,7 +13,7 @@
   --color-danger: #EF4444;
 }
 
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Custom scrollbar to look like Notion/Linear */
 ::-webkit-scrollbar {

@@ -1,154 +1,89 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { INITIAL_LEADS, INITIAL_TASKS } from '../data/mockData';
+import { sampleLeads } from '../data/sampleLeads';
 
-const LeadContext = createContext();
+/**
+ * @typedef {Object} Lead
+ * @property {string} id
+ * @property {string} name
+ * @property {string} company
+ * @property {string} email
+ * @property {string} phone
+ * @property {'New' | 'Contacted' | 'Meeting Scheduled' | 'Proposal Sent' | 'Won' | 'Lost'} status
+ * @property {'Website' | 'Referral' | 'LinkedIn' | 'Cold Call' | 'Email Campaign' | 'Other'} source
+ * @property {string} createdAt
+ */
 
-export function LeadProvider({ children }) {
-  const [leads, setLeads] = useLocalStorage('crm-leads', INITIAL_LEADS);
-  const [tasks, setTasks] = useLocalStorage('crm-tasks', INITIAL_TASKS);
+export const LeadContext = createContext();
 
+/**
+ * Provider component that wraps your app and makes lead object
+ * available to any child component that calls useLeads().
+ * 
+ * @param {Object} props
+ * @param {React.ReactNode} props.children
+ * @returns {JSX.Element}
+ */
+export const LeadProvider = ({ children }) => {
+  const [leads, setLeads] = useLocalStorage('startup-crm-leads', sampleLeads);
+
+  /**
+   * Adds a new lead to the state
+   * @param {Omit<Lead, 'id' | 'createdAt'>} leadData The data for the new lead
+   */
   const addLead = (leadData) => {
     const newLead = {
-      id: `lead-${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      history: [
-        {
-          id: `h-${Date.now()}-init`,
-          date: new Date().toISOString(),
-          type: 'Created',
-          message: `Lead created manually: Assigned to ${leadData.owner || 'Unassigned'}.`
-        }
-      ],
-      value: Number(leadData.value) || 0,
-      notes: leadData.notes || '',
-      ...leadData
+      ...leadData,
+      id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+      createdAt: new Date().toISOString()
     };
-    setLeads((prev) => [newLead, ...prev]);
-    return newLead;
+    setLeads((prevLeads) => [newLead, ...prevLeads]);
   };
 
-  const updateLead = (leadId, updatedFields) => {
-    setLeads((prevLeads) =>
-      prevLeads.map((lead) => {
-        if (lead.id === leadId) {
-          const historyEntries = [];
-          
-          // Log stage transitions
-          if (updatedFields.stage && updatedFields.stage !== lead.stage) {
-            historyEntries.push({
-              id: `h-${Date.now()}-stage`,
-              date: new Date().toISOString(),
-              type: 'Stage Changed',
-              message: `Stage updated from '${lead.stage}' to '${updatedFields.stage}'.`
-            });
-          }
-
-          // Log value adjustments
-          if (updatedFields.value !== undefined && Number(updatedFields.value) !== lead.value) {
-            historyEntries.push({
-              id: `h-${Date.now()}-val`,
-              date: new Date().toISOString(),
-              type: 'Value Updated',
-              message: `Deal value adjusted from $${lead.value.toLocaleString()} to $${Number(updatedFields.value).toLocaleString()}.`
-            });
-          }
-
-          // Log owner updates
-          if (updatedFields.owner && updatedFields.owner !== lead.owner) {
-            historyEntries.push({
-              id: `h-${Date.now()}-owner`,
-              date: new Date().toISOString(),
-              type: 'Owner Assigned',
-              message: `Lead owner reassigned from ${lead.owner || 'None'} to ${updatedFields.owner}.`
-            });
-          }
-
-          return {
-            ...lead,
-            ...updatedFields,
-            value: updatedFields.value !== undefined ? Number(updatedFields.value) : lead.value,
-            history: [...lead.history, ...historyEntries]
-          };
-        }
-        return lead;
-      })
+  /**
+   * Updates an existing lead by ID
+   * @param {string} id The ID of the lead to update
+   * @param {Partial<Lead>} updatedData The updated fields
+   */
+  const updateLead = (id, updatedData) => {
+    setLeads((prevLeads) => 
+      prevLeads.map((lead) => (lead.id === id ? { ...lead, ...updatedData } : lead))
     );
   };
 
-  const deleteLead = (leadId) => {
-    setLeads((prev) => prev.filter((lead) => lead.id !== leadId));
-    // Clean up related tasks too
-    setTasks((prev) => prev.filter((task) => task.leadId !== leadId));
+  /**
+   * Deletes a lead by ID
+   * @param {string} id The ID of the lead to delete
+   */
+  const deleteLead = (id) => {
+    setLeads((prevLeads) => prevLeads.filter((lead) => lead.id !== id));
   };
 
-  const addHistoryLog = (leadId, type, message) => {
-    setLeads((prevLeads) =>
-      prevLeads.map((lead) => {
-        if (lead.id === leadId) {
-          return {
-            ...lead,
-            history: [
-              ...lead.history,
-              {
-                id: `h-${Date.now()}-log`,
-                date: new Date().toISOString(),
-                type: type || 'Note Added',
-                message
-              }
-            ]
-          };
-        }
-        return lead;
-      })
-    );
-  };
-
-  const addTask = (taskText, leadId = null, date = 'Today') => {
-    const newTask = {
-      id: `task-${Date.now()}`,
-      text: taskText,
-      done: false,
-      date,
-      leadId
-    };
-    setTasks((prev) => [newTask, ...prev]);
-    return newTask;
-  };
-
-  const toggleTask = (taskId) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => (task.id === taskId ? { ...task, done: !task.done } : task))
-    );
-  };
-
-  const deleteTask = (taskId) => {
-    setTasks((prev) => prev.filter((task) => task.id !== taskId));
+  /**
+   * Retrieves a single lead by ID
+   * @param {string} id The ID of the lead to retrieve
+   * @returns {Lead | undefined} The lead object if found, otherwise undefined
+   */
+  const getLeadById = (id) => {
+    return leads.find((lead) => lead.id === id);
   };
 
   return (
-    <LeadContext.Provider
-      value={{
-        leads,
-        tasks,
-        addLead,
-        updateLead,
-        deleteLead,
-        addHistoryLog,
-        addTask,
-        toggleTask,
-        deleteTask
-      }}
-    >
+    <LeadContext.Provider value={{ leads, addLead, updateLead, deleteLead, getLeadById }}>
       {children}
     </LeadContext.Provider>
   );
-}
+};
 
-export function useLeads() {
+/**
+ * Custom hook to consume the LeadContext
+ * @returns {{ leads: Lead[], addLead: Function, updateLead: Function, deleteLead: Function, getLeadById: Function }}
+ * @throws {Error} if used outside of a LeadProvider
+ */
+export const useLeads = () => {
   const context = useContext(LeadContext);
   if (!context) {
     throw new Error('useLeads must be used within a LeadProvider');
   }
   return context;
-}
+};

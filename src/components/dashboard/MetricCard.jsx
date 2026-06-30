@@ -23,21 +23,21 @@ export default function MetricCard({ title, value, trend, trendType, description
   const sparklinePath = getSparklinePath(sparklineData);
 
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/80 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group">
+    <div className="relative overflow-hidden bg-white dark:bg-slate-800 dark:bg-[#111827] border border-slate-200 dark:border-slate-700 dark:border-slate-800/80 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group">
       {/* Background radial highlight */}
       <div className="absolute -right-10 -top-10 w-28 h-28 rounded-full bg-blue-500/5 dark:bg-blue-400/5 blur-xl group-hover:scale-125 transition-transform duration-500" />
       
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-400 uppercase tracking-wider">
           {title}
         </span>
-        <div className="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-700/30 group-hover:border-blue-100/50 dark:group-hover:border-blue-900/20 group-hover:bg-blue-50/30 dark:group-hover:bg-blue-950/20 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <div className="p-2 rounded-lg bg-slate-50 dark:bg-slate-900 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 dark:text-slate-300 border border-slate-100 dark:border-slate-700 dark:border-slate-700/30 group-hover:border-blue-100/50 dark:group-hover:border-blue-900/20 group-hover:bg-blue-50/30 dark:group-hover:bg-blue-950/20 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
           {Icon && <Icon className="w-4 h-4" />}
         </div>
       </div>
 
       <div className="mt-3 flex items-baseline gap-2">
-        <span className="text-2xl font-display font-bold text-slate-900 dark:text-slate-50 tracking-tight">
+        <span className="text-2xl font-display font-bold text-slate-900 dark:text-white dark:text-slate-50 tracking-tight">
           {value}
         </span>
       </div>
@@ -51,14 +51,14 @@ export default function MetricCard({ title, value, trend, trendType, description
                 ? 'text-emerald-700 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/30' 
                 : isDown 
                   ? 'text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-950/30' 
-                  : 'text-slate-600 bg-slate-100 dark:text-slate-400 dark:bg-slate-800/50'
+                  : 'text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:bg-slate-800/50'
             }`}>
               {isUp && <TrendingUp className="w-3 h-3" />}
               {isDown && <TrendingDown className="w-3 h-3" />}
               {trend}
             </span>
           )}
-          <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
+          <span className="text-[11px] text-slate-400 dark:text-slate-500 dark:text-slate-400 font-medium">
             {description}
           </span>
         </div>

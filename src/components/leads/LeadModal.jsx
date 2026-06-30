@@ -3,9 +3,7 @@ import { useLeads } from '../../context/LeadContext';
 import { X, Sparkles, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const STAGES = ['New', 'Contacted', 'Qualified', 'Proposal', 'Won', 'Lost'];
-const OWNERS = ['Alex Rivera', 'Sophia Martinez', 'Marcus Vance'];
-const SOURCES = ['LinkedIn', 'Referral', 'Product Sign-up', 'Cold Email', 'Inbound'];
+import { LEAD_STAGES, SALES_OWNERS, LEAD_SOURCES } from '../../constants/leadConstants';
 
 export default function LeadModal({ isOpen, onClose }) {
   const { addLead } = useLeads();
@@ -59,7 +57,7 @@ export default function LeadModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center md:p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-xs transition-opacity"
@@ -67,46 +65,49 @@ export default function LeadModal({ isOpen, onClose }) {
       />
 
       {/* Modal Dialog */}
-      <div className="relative bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800/80 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden z-10 transition-all transform scale-100">
+      <div className="relative bg-white dark:bg-slate-800 dark:bg-[#0f172a] border-0 md:border border-slate-200 dark:border-slate-700 dark:border-slate-800/80 w-full min-h-screen md:min-h-0 md:max-w-lg rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden z-10 transition-all transform scale-100 flex flex-col">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/30">
+        <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-700 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/30">
           <div className="flex items-center gap-2">
             <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/10 text-blue-600 dark:text-blue-400">
               <Sparkles className="w-4 h-4" />
             </div>
-            <h3 className="font-display font-bold text-sm text-slate-900 dark:text-slate-50">
+            <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white dark:text-slate-50">
               Create New CRM Lead
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            aria-label="Close modal"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 dark:text-slate-200 dark:hover:text-slate-200 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:bg-slate-800 transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 md:p-6 space-y-4 flex-1 flex flex-col">
           
+          <div className="flex-1 space-y-4">
           {/* Two column name/company */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <label htmlFor="contactName" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
                 Contact Name *
               </label>
               <input
+                id="contactName"
                 type="text"
                 placeholder="e.g. John Doe"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className={`w-full h-8.5 px-3 text-xs text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900/40 border ${
-                  errors.name ? 'border-red-500 focus:border-red-500' : 'border-slate-200 dark:border-slate-800 focus:border-blue-500'
+                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border ${
+                  errors.name ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500'
                 } rounded-lg outline-none transition-all`}
               />
               {errors.name && (
-                <p className="flex items-center gap-1 text-[10px] text-red-500 font-medium">
+                <p className="flex items-center gap-1 text-[10px] text-red-600 dark:text-red-500 font-medium">
                   <AlertCircle className="w-3 h-3" />
                   {errors.name}
                 </p>
@@ -114,20 +115,21 @@ export default function LeadModal({ isOpen, onClose }) {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <label htmlFor="companyName" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
                 Company Name *
               </label>
               <input
+                id="companyName"
                 type="text"
                 placeholder="e.g. Acme Labs"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className={`w-full h-8.5 px-3 text-xs text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900/40 border ${
-                  errors.company ? 'border-red-500 focus:border-red-500' : 'border-slate-200 dark:border-slate-800 focus:border-blue-500'
+                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border ${
+                  errors.company ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500'
                 } rounded-lg outline-none transition-all`}
               />
               {errors.company && (
-                <p className="flex items-center gap-1 text-[10px] text-red-500 font-medium">
+                <p className="flex items-center gap-1 text-[10px] text-red-600 dark:text-red-500 font-medium">
                   <AlertCircle className="w-3 h-3" />
                   {errors.company}
                 </p>
@@ -137,20 +139,21 @@ export default function LeadModal({ isOpen, onClose }) {
 
           {/* Email field */}
           <div className="space-y-1.5">
-            <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            <label htmlFor="emailAddress" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
               Email Address *
             </label>
             <input
+              id="emailAddress"
               type="email"
               placeholder="e.g. john@acme.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full h-8.5 px-3 text-xs text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900/40 border ${
-                errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-200 dark:border-slate-800 focus:border-blue-500'
+              className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border ${
+                errors.email ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500'
               } rounded-lg outline-none transition-all`}
             />
             {errors.email && (
-              <p className="flex items-center gap-1 text-[10px] text-red-500 font-medium">
+              <p className="flex items-center gap-1 text-[10px] text-red-600 dark:text-red-500 font-medium">
                 <AlertCircle className="w-3 h-3" />
                 {errors.email}
               </p>
@@ -160,28 +163,30 @@ export default function LeadModal({ isOpen, onClose }) {
           {/* Value and Owner grid */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <label htmlFor="dealValue" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
                 Deal Value (USD)
               </label>
               <input
+                id="dealValue"
                 type="number"
                 placeholder="e.g. 15000"
                 value={formData.value}
                 onChange={(e) => setFormData({ ...formData, value: e.target.value })}
-                className="w-full h-8.5 px-3 text-xs text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 focus:border-blue-500 rounded-lg outline-none transition-all"
+                className="w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500 rounded-lg outline-none transition-all"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <label htmlFor="salesOwner" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
                 Sales Owner
               </label>
               <select
+                id="salesOwner"
                 value={formData.owner}
                 onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
-                className="w-full h-8.5 px-2 text-xs text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
               >
-                {OWNERS.map((o) => (
+                {SALES_OWNERS.map((o) => (
                   <option key={o} value={o}>{o}</option>
                 ))}
               </select>
@@ -191,30 +196,32 @@ export default function LeadModal({ isOpen, onClose }) {
           {/* Stage and Source grid */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <label htmlFor="initialStage" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
                 Initial CRM Stage
               </label>
               <select
+                id="initialStage"
                 value={formData.stage}
                 onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
-                className="w-full h-8.5 px-2 text-xs text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
               >
-                {STAGES.map((s) => (
+                {LEAD_STAGES.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <label htmlFor="acquisitionChannel" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
                 Acquisition Channel
               </label>
               <select
+                id="acquisitionChannel"
                 value={formData.source}
                 onChange={(e) => setFormData({ ...formData, source: e.target.value })}
-                className="w-full h-8.5 px-2 text-xs text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
               >
-                {SOURCES.map((src) => (
+                {LEAD_SOURCES.map((src) => (
                   <option key={src} value={src}>{src}</option>
                 ))}
               </select>
@@ -223,30 +230,32 @@ export default function LeadModal({ isOpen, onClose }) {
 
           {/* Notes field */}
           <div className="space-y-1.5">
-            <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            <label htmlFor="notes" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
               Brief Description & Background notes
             </label>
             <textarea
+              id="notes"
               placeholder="e.g. Met at Web Summit, looking to transition database layout systems..."
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className="w-full p-2.5 text-xs text-slate-900 dark:text-slate-100 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 focus:border-blue-500 rounded-lg outline-none resize-none transition-all leading-normal"
+              className="w-full p-3 min-h-[88px] text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500 rounded-lg outline-none resize-none transition-all leading-normal"
             />
+          </div>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/80">
+          <div className="flex items-center justify-end gap-3 pt-3 mt-auto md:mt-0 border-t border-slate-100 dark:border-slate-700 dark:border-slate-800/80">
             <button
               type="button"
               onClick={onClose}
-              className="h-8.5 px-4 text-xs font-semibold text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-850 rounded-lg transition-colors cursor-pointer"
+              className="min-h-[44px] px-4 text-sm md:text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:bg-slate-850 rounded-lg transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="h-8.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-all active:scale-97 shadow-sm cursor-pointer"
+              className="min-h-[44px] flex-1 md:flex-none px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm md:text-xs font-semibold rounded-lg transition-all active:scale-97 shadow-sm cursor-pointer"
             >
               Create Lead
             </button>

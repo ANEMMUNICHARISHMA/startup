@@ -1,40 +1,38 @@
 import React from 'react';
 
 /**
- * @typedef {Object} StatsCardProps
- * @property {string} title - The title of the metric
- * @property {string|number} value - The main metric value
- * @property {React.ReactNode} icon - The lucide-react icon component
- * @property {number} change - Percentage change compared to last month
- * @property {string} color - Tailwind color class for the icon background
+ * StatsCard component displays a metric with an icon, a big number, and a percentage change.
+ * 
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the statistic.
+ * @param {string|number} props.value - The main value to display.
+ * @param {React.ElementType} props.icon - The Lucide React icon component.
+ * @param {number} props.change - The percentage change (positive or negative).
+ * @param {string} props.color - The Tailwind text color class for the icon (e.g., 'text-blue-600').
+ * @returns {JSX.Element} The rendered StatsCard component.
  */
-
-/**
- * Displays a single metric card with an icon, value, and percentage change.
- *
- * @param {StatsCardProps} props - The component props
- * @returns {JSX.Element} The StatsCard component
- */
-export function StatsCard({ title, value, icon, change, color }) {
+const StatsCard = ({ title, value, icon: Icon, change, color }) => {
   const isPositive = change >= 0;
   
   return (
-    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-medium text-slate-500">{title}</h3>
-        <div className={`p-2 rounded-lg ${color} bg-opacity-10`}>
-          {icon}
+    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{title}</p>
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{value}</h3>
+        </div>
+        <div className={`p-3 rounded-lg bg-slate-50 dark:bg-slate-900 ${color}`}>
+          <Icon size={24} />
         </div>
       </div>
-      <div className="flex items-baseline gap-2">
-        <span className="text-2xl font-bold text-slate-900">{value}</span>
-      </div>
-      <div className="mt-2 text-sm">
-        <span className={`font-medium ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+      <div className="mt-4 flex items-center">
+        <span className={`text-sm font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
           {isPositive ? '+' : ''}{change}%
         </span>
-        <span className="text-slate-500 ml-2">vs last month</span>
+        <span className="text-sm text-slate-500 dark:text-slate-400 ml-2">vs last month</span>
       </div>
     </div>
   );
-}
+};
+
+export default React.memo(StatsCard);

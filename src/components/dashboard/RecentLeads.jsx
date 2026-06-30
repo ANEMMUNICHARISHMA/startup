@@ -1,84 +1,63 @@
 import React from 'react';
+import { StatusBadge } from '../leads/StatusBadge';
 
 /**
- * @typedef {Object} Lead
- * @property {string} id - Lead ID
- * @property {string} name - Lead Name
- * @property {string} company - Company Name
- * @property {'New'|'Contacted'|'Qualified'|'Proposal'|'Won'} status - Current pipeline status
- * @property {string} dateAdded - Date string
+ * RecentLeads component displays a table of the most recently added leads.
+ * 
+ * @param {Object} props - The component props.
+ * @param {Array<Object>} props.leads - The array of lead objects.
+ * @returns {JSX.Element} The rendered RecentLeads component.
  */
-
-/**
- * @typedef {Object} RecentLeadsProps
- * @property {Lead[]} leads - Array of leads
- */
-
-/**
- * Displays a table of the 5 most recently added leads.
- *
- * @param {RecentLeadsProps} props - The component props
- * @returns {JSX.Element} The RecentLeads component
- */
-export function RecentLeads({ leads }) {
-  // Sort by date added descending and take top 5
-  const recentLeads = [...leads]
-    .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
-    .slice(0, 5);
-
-  const getStatusBadge = (status) => {
-    const styles = {
-      'New': 'bg-blue-50 text-blue-700 ring-blue-600/20',
-      'Contacted': 'bg-amber-50 text-amber-700 ring-amber-600/20',
-      'Qualified': 'bg-indigo-50 text-indigo-700 ring-indigo-600/20',
-      'Proposal': 'bg-purple-50 text-purple-700 ring-purple-600/20',
-      'Won': 'bg-green-50 text-green-700 ring-green-600/20',
-    };
-    
-    return (
-      <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${styles[status] || 'bg-slate-50 text-slate-700 ring-slate-600/20'}`}>
-        {status}
-      </span>
-    );
-  };
+const RecentLeads = ({ leads = [] }) => {
+  // Take top 5 recent leads
+  const recentLeads = [...leads].slice(0, 5);
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-      <div className="px-6 py-5 border-b border-slate-200">
-        <h3 className="text-lg font-semibold text-slate-900">Recent Leads</h3>
+    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Recent Leads</h3>
+        <button className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">View All</button>
       </div>
+      
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm whitespace-nowrap">
-          <thead className="bg-slate-50 text-slate-500">
-            <tr>
-              <th className="px-6 py-3 font-medium">Name</th>
-              <th className="px-6 py-3 font-medium">Company</th>
-              <th className="px-6 py-3 font-medium">Status</th>
-              <th className="px-6 py-3 font-medium">Date Added</th>
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
+              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Name</th>
+              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Company</th>
+              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Status</th>
+              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Date Added</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-200">
-            {recentLeads.length === 0 ? (
-              <tr>
-                <td colSpan="4" className="px-6 py-4 text-center text-slate-500">
-                  No leads found.
-                </td>
-              </tr>
-            ) : (
-              recentLeads.map((lead) => (
-                <tr key={lead.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-slate-900">{lead.name}</td>
-                  <td className="px-6 py-4 text-slate-500">{lead.company}</td>
-                  <td className="px-6 py-4">{getStatusBadge(lead.status)}</td>
-                  <td className="px-6 py-4 text-slate-500">
-                    {new Date(lead.dateAdded).toLocaleDateString()}
+          <tbody>
+            {recentLeads.length > 0 ? (
+              recentLeads.map((lead, index) => (
+                <tr key={lead.id || index} className="border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 transition-colors">
+                  <td className="py-3 px-4">
+                    <p className="text-sm font-medium text-slate-900 dark:text-white">{lead.name}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{lead.email}</p>
+                  </td>
+                  <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-200">{lead.company}</td>
+                  <td className="py-3 px-4">
+                    <StatusBadge status={lead.status} />
+                  </td>
+                  <td className="py-3 px-4 text-sm text-slate-500 dark:text-slate-400">
+                    {lead.createdAt ? new Date(lead.createdAt).toLocaleDateString() : 'N/A'}
                   </td>
                 </tr>
               ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
+                  No recent leads found.
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
       </div>
     </div>
   );
-}
+};
+
+export default RecentLeads;

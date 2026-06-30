@@ -1,44 +1,52 @@
-import { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useLocalStorage('crm-theme', () => {
-    // Default to dark mode or system theme preference
-    if (typeof window !== 'undefined') {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      return prefersDark ? 'dark' : 'light';
-    }
-    return 'light';
-  });
+/**
+ * Provider component for managing dark/light mode theme
+ * 
+ * @param {Object} props
+ * @param {React.ReactNode} props.children
+ * @returns {JSX.Element}
+ */
+export const ThemeProvider = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useLocalStorage(
+    'startup-crm-theme',
+    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  );
 
   useEffect(() => {
-    const root = window.document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.style.colorScheme = 'dark';
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
     } else {
-      root.classList.remove('dark');
-      root.style.colorScheme = 'light';
+      document.documentElement.classList.remove('dark');
     }
-  }, [theme]);
+  }, [isDarkMode]);
 
+  /**
+   * Toggles the current theme between dark and light modes
+   */
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme, isDark: theme === 'dark' }}>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-}
+};
 
-export function useTheme() {
+/**
+ * Custom hook to consume the ThemeContext
+ * @returns {{ isDarkMode: boolean, toggleTheme: Function }}
+ * @throws {Error} if used outside of a ThemeProvider
+ */
+export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
-}
+};
