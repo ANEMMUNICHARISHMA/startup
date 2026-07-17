@@ -12,8 +12,8 @@ export default function LeadModal({ isOpen, onClose }) {
     company: '',
     email: '',
     value: '',
-    stage: 'New',
-    source: 'Inbound',
+    status: 'New',
+    source: 'Website',
     owner: 'Alex Rivera',
     notes: ''
   });
@@ -201,8 +201,8 @@ export default function LeadModal({ isOpen, onClose }) {
               </label>
               <select
                 id="initialStage"
-                value={formData.stage}
-                onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
+                value={formData.status}
+                onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                 className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
               >
                 {LEAD_STAGES.map((s) => (

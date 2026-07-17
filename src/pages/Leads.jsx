@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Plus, LayoutGrid, List } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { LeadForm } from '../components/leads/LeadForm';
@@ -13,6 +14,7 @@ import { useLeads } from '../context/LeadContext';
  * Main Leads page component that manages the state and layout of the Lead CRUD system.
  */
 export default function Leads() {
+  const { onOpenAddLead } = useOutletContext() || {};
   const { leads, addLead, updateLead, deleteLead } = useLeads();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedLead, setSelectedLead] = useState(null);
@@ -33,17 +35,19 @@ export default function Leads() {
     setSelectedLead(null);
   }, []);
 
-  const handleSaveLead = useCallback((leadData) => {
+  const handleSaveLead = useCallback(async (leadData) => {
+    let result;
     if (selectedLead) {
       // Update existing
-      updateLead(selectedLead.id, leadData);
-      toast.success('Lead updated successfully!', { icon: '👏' });
+      result = await updateLead(selectedLead.id, leadData);
     } else {
       // Create new
-      addLead(leadData);
-      toast.success('Lead created successfully!');
+      result = await addLead(leadData);
     }
-    handleCloseModal();
+    
+    if (result.success) {
+      handleCloseModal();
+    }
   }, [selectedLead, updateLead, addLead, handleCloseModal]);
 
   const handleDeleteLead = useCallback((id) => {
@@ -110,7 +114,7 @@ export default function Leads() {
             </div>
 
             <button
-              onClick={() => handleOpenModal()}
+              onClick={() => onOpenAddLead ? onOpenAddLead() : handleOpenModal()}
               className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
             >
               <Plus size={18} />

@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import BottomNav from './BottomNav';
 import LeadModal from '../leads/LeadModal';
+import { useLeads } from '../../context/LeadContext';
 
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isAddLeadOpen, setIsAddLeadOpen] = useState(false);
   const location = useLocation();
+  const { fetchLeads } = useLeads();
+
+  useEffect(() => {
+    fetchLeads();
+  }, [fetchLeads]);
 
   // Determine page title based on path
   const getPageTitle = () => {

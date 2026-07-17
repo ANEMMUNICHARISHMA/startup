@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 // Import the primary layout frame which remains static across view swaps
 import DashboardLayout from '../components/common/DashboardLayout';
 
+import ProtectedRoute from '../components/auth/ProtectedRoute';
+
 /**
  * Lazy load pages dynamically for optimization.
  * This separates bundles per page view so only required Javascript is parsed.
@@ -13,6 +15,8 @@ const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Leads = lazy(() => import('../pages/Leads'));
 const Analytics = lazy(() => import('../pages/Analytics'));
 const NotFound = lazy(() => import('../pages/NotFound'));
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
 
 /**
  * SkeletalLoading Component
@@ -43,46 +47,67 @@ function SkeletalLoading() {
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Main layout router node containing shared shell frameworks (sidebar/header) */}
-      <Route element={<DashboardLayout />}>
-        {/*
-          Nested Page views wrapped individually or globally inside Suspense.
-          We wrap all children here inside a single Suspense component so that any 
-          page change displays the spinner fallback during bundle download.
-        */}
-        <Route 
-          path="/" 
-          element={
-            <Suspense fallback={<SkeletalLoading />}>
-              <Dashboard />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/leads" 
-          element={
-            <Suspense fallback={<SkeletalLoading />}>
-              <Leads />
-            </Suspense>
-          } 
-        />
-        <Route 
-          path="/analytics" 
-          element={
-            <Suspense fallback={<SkeletalLoading />}>
-              <Analytics />
-            </Suspense>
-          } 
-        />
-        {/* Fallback 404 handler path rendering our NotFound component */}
-        <Route 
-          path="*" 
-          element={
-            <Suspense fallback={<SkeletalLoading />}>
-              <NotFound />
-            </Suspense>
-          } 
-        />
+      {/* Public Routes */}
+      <Route 
+        path="/login" 
+        element={
+          <Suspense fallback={<SkeletalLoading />}>
+            <Login />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path="/register" 
+        element={
+          <Suspense fallback={<SkeletalLoading />}>
+            <Register />
+          </Suspense>
+        } 
+      />
+
+      {/* Protected Routes */}
+      <Route element={<ProtectedRoute />}>
+        {/* Main layout router node containing shared shell frameworks (sidebar/header) */}
+        <Route element={<DashboardLayout />}>
+          {/*
+            Nested Page views wrapped individually or globally inside Suspense.
+            We wrap all children here inside a single Suspense component so that any 
+            page change displays the spinner fallback during bundle download.
+          */}
+          <Route 
+            path="/" 
+            element={
+              <Suspense fallback={<SkeletalLoading />}>
+                <Dashboard />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/leads" 
+            element={
+              <Suspense fallback={<SkeletalLoading />}>
+                <Leads />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/analytics" 
+            element={
+              <Suspense fallback={<SkeletalLoading />}>
+                <Analytics />
+              </Suspense>
+            } 
+          />
+          {/* Fallback 404 handler path rendering our NotFound component */}
+          <Route 
+            path="*" 
+            element={
+              <Suspense fallback={<SkeletalLoading />}>
+                <NotFound />
+              </Suspense>
+            } 
+          />
+        </Route>
       </Route>
     </Routes>
   );

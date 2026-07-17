@@ -179,12 +179,10 @@ export const getFunnelData = (leads) => {
   };
 
   leads.forEach(lead => {
-    const level = stageHierarchy[lead.status] || 0;
-    if (level >= 1) funnelCounts['New']++;
-    if (level >= 2) funnelCounts['Contacted']++;
-    if (level >= 3) funnelCounts['Meeting Scheduled']++;
-    if (level >= 4) funnelCounts['Proposal Sent']++;
-    if (level >= 5) funnelCounts['Won']++;
+    const status = lead.status;
+    if (funnelCounts[status] !== undefined) {
+      funnelCounts[status]++;
+    }
   });
 
   const stages = Object.keys(funnelCounts);

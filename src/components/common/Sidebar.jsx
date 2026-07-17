@@ -13,8 +13,12 @@ import {
   Moon, 
   Sparkles,
   Settings,
-  HelpCircle
+  HelpCircle,
+  LogOut
 } from 'lucide-react';
+
+// Import useAuth to access logout functionality
+import { useAuth } from '../../hooks/useAuth';
 
 /**
  * Sidebar Component
@@ -24,6 +28,7 @@ import {
 export default function Sidebar({ isOpen, toggleSidebar }) {
   // Pull dark theme triggers and click actions from global state provider
   const { isDarkMode: isDark, toggleTheme } = useTheme();
+  const { logout } = useAuth();
 
   // Define navigation layout entries: name titles, router paths, and corresponding icons
   const navItems = [
@@ -132,6 +137,15 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
           <HelpCircle className="w-4 h-4 text-slate-400 dark:text-slate-500 dark:text-slate-400 group-hover:text-slate-600 dark:text-slate-300 dark:group-hover:text-slate-300" />
           <span>Support & Docs</span>
         </a>
+
+        {/* Logout Action */}
+        <button 
+          onClick={logout}
+          className="w-full flex items-center gap-3 px-3 py-2 mt-4 text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20 border border-transparent rounded-lg transition-colors group cursor-pointer"
+        >
+          <LogOut className="w-4 h-4 text-red-500 dark:text-red-400 group-hover:text-red-600 dark:group-hover:text-red-300" />
+          <span>Logout</span>
+        </button>
       </nav>
 
       {/* Sidebar Footer containing global dark/light toggles */}

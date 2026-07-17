@@ -7,6 +7,9 @@ import { ThemeProvider } from './context/ThemeContext';
 // Import the primary CRM leads database state provider containing lead updates logic
 import { LeadProvider } from './context/LeadContext';
 
+// Import authentication context provider
+import { AuthProvider } from './context/AuthContext';
+
 // Import our new route engine containing lazy loaded pages and fallback templates
 import AppRoutes from './routes/index';
 
@@ -23,11 +26,13 @@ function App() {
     <ThemeProvider>
       {/* Wrap client CRM databases provider containing mutations and items checklists */}
       <LeadProvider>
-        {/*
-          Declare client router state.
-          BrowserRouter uses clean HTML5 history APIs to coordinate navigation paths.
-        */}
-        <BrowserRouter>
+        {/* Wrap authentication provider to manage user session state */}
+        <AuthProvider>
+          {/*
+            Declare client router state.
+            BrowserRouter uses clean HTML5 history APIs to coordinate navigation paths.
+          */}
+          <BrowserRouter>
           {/* Mount the primary client routes engine containing child nodes definitions */}
           <AppRoutes />
           
@@ -45,7 +50,8 @@ function App() {
               }
             }}
           />
-        </BrowserRouter>
+          </BrowserRouter>
+        </AuthProvider>
       </LeadProvider>
     </ThemeProvider>
   );
