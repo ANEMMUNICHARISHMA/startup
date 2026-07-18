@@ -86,8 +86,8 @@ export const AuthProvider = ({ children }) => {
     // Remove from localStorage
     localStorage.removeItem('crm-token');
     toast.success('Logged out successfully');
-    // We can handle redirecting in the components using navigate, or here by forcing window.location
-    window.location.href = '/login';
+    // React Router (via ProtectedRoute) will automatically detect the missing token 
+    // and seamlessly redirect to /login without a full page reload (avoiding Vercel 404s).
   };
 
   return (
