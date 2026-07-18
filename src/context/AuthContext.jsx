@@ -49,7 +49,9 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: 'Login failed' };
       }
     } catch (error) {
-      const errorMsg = error.response?.data?.error || 'Network error during login';
+      const errorMsg = error.response?.data?.message || 
+                       (error.response?.data?.errors && error.response.data.errors[0]?.message) || 
+                       'Network error during login';
       toast.error(errorMsg);
       return { success: false, message: errorMsg };
     }
@@ -69,7 +71,9 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: 'Registration failed' };
       }
     } catch (error) {
-      const errorMsg = error.response?.data?.error || 'Network error during registration';
+      const errorMsg = error.response?.data?.message || 
+                       (error.response?.data?.errors && error.response.data.errors[0]?.message) || 
+                       'Network error during registration';
       toast.error(errorMsg);
       return { success: false, message: errorMsg };
     }
