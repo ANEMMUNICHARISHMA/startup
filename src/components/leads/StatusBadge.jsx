@@ -16,9 +16,9 @@ export function StatusBadge({ status }) {
   const getStatusStyles = (s) => {
     switch (s) {
       case 'New':
-        return 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white border-slate-200 dark:border-slate-700';
+        return 'bg-surface text-text dark:text-text border-border';
       case 'Contacted':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-primary/20 text-blue-800 border-blue-200';
       case 'Meeting Scheduled':
         return 'bg-indigo-100 text-indigo-800 border-indigo-200';
       case 'Proposal Sent':
@@ -28,7 +28,7 @@ export function StatusBadge({ status }) {
       case 'Lost':
         return 'bg-red-100 text-red-800 border-red-200';
       default:
-        return 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white border-slate-200 dark:border-slate-700';
+        return 'bg-surface text-text dark:text-text border-border';
     }
   };
 

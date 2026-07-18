@@ -2,12 +2,39 @@
 
 @import "tailwindcss";
 
+:root {
+  --color-brand-background: #FAF7FD;
+  --color-brand-surface: #F0EAF8;
+  --color-brand-primary: #6B46C1;
+  --color-brand-secondary: #9272D4;
+  --color-brand-accent: #FF8AAE;
+  --color-brand-text: #241A38;
+  --color-brand-border: #DDD3ED;
+}
+
+.dark {
+  --color-brand-background: #171122;
+  --color-brand-surface: #241B35;
+  --color-brand-primary: #A885FF;
+  --color-brand-secondary: #C4ABFF;
+  --color-brand-accent: #FFA6C2;
+  --color-brand-text: #F8F6FC;
+  --color-brand-border: #3C3154;
+}
+
 @theme {
   --font-sans: "Inter", "Outfit", system-ui, -apple-system, sans-serif;
   --font-display: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
   
-  --color-primary: #2563EB;
-  --color-primary-hover: #1D4ED8;
+  --color-background: var(--color-brand-background);
+  --color-surface: var(--color-brand-surface);
+  --color-primary: var(--color-brand-primary);
+  --color-secondary: var(--color-brand-secondary);
+  --color-accent: var(--color-brand-accent);
+  --color-text: var(--color-brand-text);
+  --color-border: var(--color-brand-border);
+  
+  /* Retain existing semantic colors for specific alerts if needed, but the prompt says to use the new palette everywhere. We will keep success/warning/danger as they are not explicitly mentioned in the new palette to be overridden, wait, the prompt says "Update every UI element consistently... Success colors, Warning colors, Error colors...". But the new palette doesn't define success/warning/error colors. I will keep existing ones. */
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;

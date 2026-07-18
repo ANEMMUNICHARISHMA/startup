@@ -9,7 +9,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around h-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 md:hidden pb-safe">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around h-16 bg-surface dark:bg-background border-t border-border dark:border-border md:hidden pb-safe">
       {navItems.map((item) => {
         const Icon = item.icon;
         return (
@@ -19,14 +19,14 @@ export default function BottomNav() {
             className={({ isActive }) =>
               `flex flex-col items-center justify-center min-w-[44px] min-h-[44px] w-full h-full space-y-1 ${
                 isActive
-                  ? 'text-blue-600 dark:text-blue-400'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                  ? 'text-primary dark:text-primary'
+                  : 'text-text/60 hover:text-text dark:hover:text-text/30'
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <Icon className={`w-6 h-6 ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`} />
+                <Icon className={`w-6 h-6 ${isActive ? 'text-primary dark:text-primary' : ''}`} />
                 <span className="text-[10px] font-medium sr-only sm:not-sr-only">{item.name}</span>
               </>
             )}

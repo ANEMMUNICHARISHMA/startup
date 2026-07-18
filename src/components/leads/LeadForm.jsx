@@ -67,92 +67,92 @@ export function LeadForm({ initialData, onSubmit, onCancel }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Name *</label>
+        <label className="block text-sm font-medium text-text/90 dark:text-text/30 mb-1">Name *</label>
         <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.name ? 'border-red-500' : 'border-slate-300'}`}
+          className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:outline-none ${errors.name ? 'border-red-500' : 'border-border'}`}
           placeholder="Jane Doe"
         />
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Company *</label>
+        <label className="block text-sm font-medium text-text/90 dark:text-text/30 mb-1">Company *</label>
         <input
           type="text"
           name="company"
           value={formData.company}
           onChange={handleChange}
-          className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.company ? 'border-red-500' : 'border-slate-300'}`}
+          className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:outline-none ${errors.company ? 'border-red-500' : 'border-border'}`}
           placeholder="Acme Corp"
         />
         {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Email *</label>
+        <label className="block text-sm font-medium text-text/90 dark:text-text/30 mb-1">Email *</label>
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.email ? 'border-red-500' : 'border-slate-300'}`}
+          className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:outline-none ${errors.email ? 'border-red-500' : 'border-border'}`}
           placeholder="jane@acme.com"
         />
         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Phone</label>
+        <label className="block text-sm font-medium text-text/90 dark:text-text/30 mb-1">Phone</label>
         <input
           type="tel"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="w-full p-2 border border-border rounded-md focus:ring-2 focus:ring-primary focus:outline-none"
           placeholder="(555) 123-4567"
         />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Status</label>
+          <label className="block text-sm font-medium text-text/90 dark:text-text/30 mb-1">Status</label>
           <select
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-slate-800"
+            className="w-full p-2 border border-border rounded-md focus:ring-2 focus:ring-primary focus:outline-none bg-surface"
           >
             {statuses.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Source</label>
+          <label className="block text-sm font-medium text-text/90 dark:text-text/30 mb-1">Source</label>
           <select
             name="source"
             value={formData.source}
             onChange={handleChange}
-            className="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-slate-800"
+            className="w-full p-2 border border-border rounded-md focus:ring-2 focus:ring-primary focus:outline-none bg-surface"
           >
             {sources.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
       </div>
 
-      <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-700 mt-6">
+      <div className="flex justify-end gap-3 pt-4 border-t border-border mt-6">
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 rounded-md hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500"
+          className="px-4 py-2 text-sm font-medium text-text/90 dark:text-text/30 bg-surface border border-border rounded-md hover:bg-background dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 text-sm font-medium text-text bg-primary rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary"
         >
           {initialData ? 'Update Lead' : 'Create Lead'}
         </button>

@@ -19,10 +19,10 @@ const PipelineOverview = ({ leads = [] }) => {
 
   // Define colors for standard statuses (Tailwind classes)
   const statusConfig = {
-    'New': { color: 'bg-blue-500', label: 'New' },
+    'New': { color: 'bg-primary', label: 'New' },
     'Contacted': { color: 'bg-amber-500', label: 'Contacted' },
-    'Meeting Scheduled': { color: 'bg-indigo-500', label: 'Meeting Scheduled' },
-    'Proposal Sent': { color: 'bg-purple-500', label: 'Proposal Sent' },
+    'Meeting Scheduled': { color: 'bg-secondary', label: 'Meeting Scheduled' },
+    'Proposal Sent': { color: 'bg-accent', label: 'Proposal Sent' },
     'Won': { color: 'bg-emerald-500', label: 'Won' },
     'Lost': { color: 'bg-red-500', label: 'Lost' },
   };
@@ -31,14 +31,14 @@ const PipelineOverview = ({ leads = [] }) => {
   const statuses = Object.keys(statusCounts).length > 0 ? Object.keys(statusCounts) : Object.keys(statusConfig);
 
   return (
-    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 h-full">
-      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Pipeline Overview</h3>
+    <div className="bg-surface p-4 sm:p-6 rounded-xl shadow-sm border border-border h-full">
+      <h3 className="text-lg font-semibold text-text mb-4">Pipeline Overview</h3>
       
       {/* Horizontal Bar */}
-      <div className="h-6 w-full flex rounded-full overflow-hidden mb-6 bg-slate-100 dark:bg-slate-800">
+      <div className="h-6 w-full flex rounded-full overflow-hidden mb-6 bg-surface">
         {Object.entries(statusCounts).map(([status, count]) => {
           const percentage = (count / total) * 100;
-          const config = statusConfig[status] || { color: 'bg-slate-50 dark:bg-slate-9000' };
+          const config = statusConfig[status] || { color: 'bg-background0' };
           return (
             <div 
               key={status} 
@@ -56,14 +56,14 @@ const PipelineOverview = ({ leads = [] }) => {
       {/* Legend */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {statuses.map(status => {
-          const config = statusConfig[status] || { color: 'bg-slate-50 dark:bg-slate-9000', label: status };
+          const config = statusConfig[status] || { color: 'bg-background0', label: status };
           const count = statusCounts[status] || 0;
           return (
             <div key={status} className="flex items-center">
               <div className={`w-3 h-3 rounded-full ${config.color} mr-2`}></div>
               <div>
-                <p className="text-sm font-medium text-slate-700 dark:text-slate-200">{config.label}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">{count} leads</p>
+                <p className="text-sm font-medium text-text/90 dark:text-text/30">{config.label}</p>
+                <p className="text-xs text-text/60">{count} leads</p>
               </div>
             </div>
           );

@@ -7,9 +7,9 @@ export const LeadSourceChart = ({ data }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-slate-200 dark:bg-[#1F2937] p-3 border border-slate-700 shadow-xl rounded-lg">
-          <p className="font-semibold text-slate-900 dark:text-white mb-1">{data.name}</p>
-          <p className="text-slate-300 font-medium">{data.count} Leads</p>
+        <div className="bg-surface/50 p-3 border border-border shadow-xl rounded-lg">
+          <p className="font-semibold text-text mb-1">{data.name}</p>
+          <p className="text-text/40 font-medium">{data.count} Leads</p>
         </div>
       );
     }
@@ -17,10 +17,10 @@ export const LeadSourceChart = ({ data }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#131826] p-6 rounded-2xl border border-slate-200 dark:border-[#1F2937] shadow-sm h-full flex flex-col">
+    <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm h-full flex flex-col">
       <div className="mb-6">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-wide">Acquisition Channels</h3>
-        <p className="text-xs text-slate-500 mt-1">Breakdown of opportunities by original lead generation channel.</p>
+        <h3 className="text-sm font-bold text-text tracking-wide">Acquisition Channels</h3>
+        <p className="text-xs text-text/60 mt-1">Breakdown of opportunities by original lead generation channel.</p>
       </div>
       <div className="flex-1 min-h-[250px]">
         <ResponsiveContainer width="100%" height="100%">

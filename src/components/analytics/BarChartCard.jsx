@@ -6,9 +6,9 @@ export const BarChartCard = ({ data }) => {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-slate-200 dark:bg-[#1F2937] p-3 border border-slate-700 shadow-xl rounded-lg">
-          <p className="font-semibold text-slate-900 dark:text-white mb-1">{label}</p>
-          <p className="text-blue-400 font-medium">{payload[0].value} Leads</p>
+        <div className="bg-surface/50 p-3 border border-border shadow-xl rounded-lg">
+          <p className="font-semibold text-text mb-1">{label}</p>
+          <p className="text-primary font-medium">{payload[0].value} Leads</p>
         </div>
       );
     }
@@ -16,10 +16,10 @@ export const BarChartCard = ({ data }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#131826] p-6 rounded-2xl border border-slate-200 dark:border-[#1F2937] shadow-sm h-full flex flex-col">
+    <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm h-full flex flex-col">
       <div className="mb-6">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-wide">Monthly Leads Trend</h3>
-        <p className="text-xs text-slate-500 mt-1">Volume of new opportunities registered monthly over the last 6 months.</p>
+        <h3 className="text-sm font-bold text-text tracking-wide">Monthly Leads Trend</h3>
+        <p className="text-xs text-text/60 mt-1">Volume of new opportunities registered monthly over the last 6 months.</p>
       </div>
       <div className="flex-1 min-h-[250px]">
         <ResponsiveContainer width="100%" height="100%">

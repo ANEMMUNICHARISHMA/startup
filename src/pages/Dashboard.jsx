@@ -20,8 +20,8 @@ const Dashboard = () => {
   return (
     <div className="w-full">
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
-        <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1">Welcome back! Here's what's happening with your leads today.</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-text">Dashboard</h1>
+        <p className="text-sm sm:text-base text-text/60 mt-1">Welcome back! Here's what's happening with your leads today.</p>
       </div>
 
       {/* Stats Cards - Responsive Grid: 1 col mobile, 2 col tablet, 4 col desktop */}
@@ -31,7 +31,7 @@ const Dashboard = () => {
           value="1,248" 
           icon={Users} 
           change={12.5} 
-          color="text-blue-600" 
+          color="text-primary" 
         />
         <StatsCard 
           title="Pipeline Value" 

@@ -12,23 +12,23 @@ export const AnalyticsFilters = ({ dateRange, setDateRange }) => {
 
   return (
     <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-      <div className="flex bg-white dark:bg-[#131826] rounded-xl border border-slate-200 dark:border-[#1F2937] p-1.5 shadow-sm overflow-x-auto w-full md:w-auto">
+      <div className="flex bg-surface rounded-xl border border-border p-1.5 shadow-sm overflow-x-auto w-full md:w-auto">
         {options.map((option) => (
           <button
             key={option.value}
             onClick={() => setDateRange(option.value)}
             className={`px-4 py-1.5 text-xs font-semibold rounded-lg whitespace-nowrap transition-colors ${
               dateRange === option.value
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-surface text-text shadow-sm'
+                : 'text-text/50 hover:text-text/30'
             }`}
           >
             {option.label}
           </button>
         ))}
       </div>
-      <div className="flex items-center gap-2 text-slate-500 text-xs font-medium px-4 py-2 rounded-xl border border-slate-200 dark:border-[#1F2937] bg-white dark:bg-[#131826]/50">
-        <Clock size={14} className="text-slate-400" />
+      <div className="flex items-center gap-2 text-text/60 text-xs font-medium px-4 py-2 rounded-xl border border-border bg-surface/50">
+        <Clock size={14} className="text-text/50" />
         Calculated in real-time
       </div>
     </div>

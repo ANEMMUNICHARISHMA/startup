@@ -9,11 +9,11 @@ import { StatusBadge } from './StatusBadge';
  */
 export function LeadCard({ lead, onEdit, onDelete }) {
   return (
-    <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-surface border border-border rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-3">
         <div>
-          <h3 className="font-semibold text-slate-900 dark:text-white text-lg">{lead.name}</h3>
-          <div className="flex items-center text-slate-500 dark:text-slate-400 text-sm mt-1">
+          <h3 className="font-semibold text-text text-lg">{lead.name}</h3>
+          <div className="flex items-center text-text/60 text-sm mt-1">
             <Building2 size={14} className="mr-1.5" />
             {lead.company}
           </div>
@@ -22,33 +22,33 @@ export function LeadCard({ lead, onEdit, onDelete }) {
       </div>
 
       <div className="space-y-2 mt-4 mb-5">
-        <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
-          <Mail size={16} className="mr-2 text-slate-400" />
-          <a href={`mailto:${lead.email}`} className="hover:text-blue-600 transition-colors truncate">
+        <div className="flex items-center text-sm text-text/70 dark:text-text/40">
+          <Mail size={16} className="mr-2 text-text/50" />
+          <a href={`mailto:${lead.email}`} className="hover:text-primary transition-colors truncate">
             {lead.email}
           </a>
         </div>
         {lead.phone && (
-          <div className="flex items-center text-sm text-slate-600 dark:text-slate-300">
-            <Phone size={16} className="mr-2 text-slate-400" />
-            <a href={`tel:${lead.phone}`} className="hover:text-blue-600 transition-colors">
+          <div className="flex items-center text-sm text-text/70 dark:text-text/40">
+            <Phone size={16} className="mr-2 text-text/50" />
+            <a href={`tel:${lead.phone}`} className="hover:text-primary transition-colors">
               {lead.phone}
             </a>
           </div>
         )}
       </div>
 
-      <div className="flex justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-700">
+      <div className="flex justify-end gap-2 pt-3 border-t border-slate-100 dark:border-border">
         <button
           onClick={() => onEdit(lead)}
-          className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+          className="p-2 text-text/50 hover:text-primary hover:bg-primary/10 rounded-md transition-colors"
           aria-label="Edit lead"
         >
           <Pencil size={18} />
         </button>
         <button
           onClick={() => onDelete(lead.id)}
-          className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+          className="p-2 text-text/50 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
           aria-label="Delete lead"
         >
           <Trash2 size={18} />

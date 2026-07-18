@@ -8,20 +8,20 @@ import React from 'react';
  * @param {string|number} props.value - The main value to display.
  * @param {React.ElementType} props.icon - The Lucide React icon component.
  * @param {number} props.change - The percentage change (positive or negative).
- * @param {string} props.color - The Tailwind text color class for the icon (e.g., 'text-blue-600').
+ * @param {string} props.color - The Tailwind text color class for the icon (e.g., 'text-primary').
  * @returns {JSX.Element} The rendered StatsCard component.
  */
 const StatsCard = ({ title, value, icon: Icon, change, color }) => {
   const isPositive = change >= 0;
   
   return (
-    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+    <div className="bg-surface p-6 rounded-xl shadow-sm border border-border">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{title}</p>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{value}</h3>
+          <p className="text-sm font-medium text-text/60 mb-1">{title}</p>
+          <h3 className="text-2xl font-bold text-text">{value}</h3>
         </div>
-        <div className={`p-3 rounded-lg bg-slate-50 dark:bg-slate-900 ${color}`}>
+        <div className={`p-3 rounded-lg bg-background ${color}`}>
           <Icon size={24} />
         </div>
       </div>
@@ -29,7 +29,7 @@ const StatsCard = ({ title, value, icon: Icon, change, color }) => {
         <span className={`text-sm font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
           {isPositive ? '+' : ''}{change}%
         </span>
-        <span className="text-sm text-slate-500 dark:text-slate-400 ml-2">vs last month</span>
+        <span className="text-sm text-text/60 ml-2">vs last month</span>
       </div>
     </div>
   );

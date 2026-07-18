@@ -31,7 +31,7 @@ export default function DashboardLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:bg-[#090d16] transition-colors duration-200">
+    <div className="min-h-screen bg-background dark:bg-[#090d16] transition-colors duration-200">
       {/* Sidebar navigation */}
       <Sidebar isOpen={sidebarOpen} toggleSidebar={setSidebarOpen} />
 
@@ -55,7 +55,7 @@ export default function DashboardLayout() {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div 
-          className="fixed inset-0 z-30 bg-slate-900/50 backdrop-blur-sm md:hidden transition-opacity"
+          className="fixed inset-0 z-30 bg-background/50 backdrop-blur-sm md:hidden transition-opacity"
           onClick={() => setSidebarOpen(false)}
           aria-hidden="true"
         />

@@ -24,21 +24,21 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 p-4">
-      <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="w-full max-w-md bg-surface rounded-2xl shadow-xl border border-border p-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/20 dark:bg-primary/80/30 text-primary dark:text-primary mb-4">
             <LogIn size={24} />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome back</h2>
-          <p className="text-slate-500 dark:text-slate-400 mt-2">Sign in to your account to continue</p>
+          <h2 className="text-2xl font-bold text-text">Welcome back</h2>
+          <p className="text-text/60 mt-2">Sign in to your account to continue</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+            <label className="block text-sm font-medium text-text/90 mb-1">Email Address</label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text/50">
                 <Mail size={18} />
               </div>
               <input 
@@ -46,7 +46,7 @@ export default function Login() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white transition-colors"
+                className="block w-full pl-10 pr-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background/50 text-text transition-colors"
                 placeholder="Enter your email address"
                 autoComplete="off"
               />
@@ -54,9 +54,9 @@ export default function Login() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
+            <label className="block text-sm font-medium text-text/90 mb-1">Password</label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text/50">
                 <Lock size={18} />
               </div>
               <input 
@@ -64,7 +64,7 @@ export default function Login() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white transition-colors"
+                className="block w-full pl-10 pr-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background/50 text-text transition-colors"
                 placeholder="••••••••"
                 autoComplete="new-password"
               />
@@ -74,15 +74,15 @@ export default function Login() {
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-text bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p className="mt-6 text-center text-sm text-text/60">
           Don't have an account?{' '}
-          <Link to="/register" className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 transition-colors">
+          <Link to="/register" className="font-medium text-primary dark:text-primary hover:text-primary transition-colors">
             Sign up now
           </Link>
         </p>

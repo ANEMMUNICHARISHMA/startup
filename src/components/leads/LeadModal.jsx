@@ -60,27 +60,27 @@ export default function LeadModal({ isOpen, onClose }) {
     <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center md:p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-xs transition-opacity"
+        className="absolute inset-0 bg-background/40 dark:bg-black/60 backdrop-blur-xs transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
-      <div className="relative bg-white dark:bg-slate-800 dark:bg-[#0f172a] border-0 md:border border-slate-200 dark:border-slate-700 dark:border-slate-800/80 w-full min-h-screen md:min-h-0 md:max-w-lg rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden z-10 transition-all transform scale-100 flex flex-col">
+      <div className="relative bg-surface dark:bg-[#0f172a] border-0 md:border border-border dark:border-border/80 w-full min-h-screen md:min-h-0 md:max-w-lg rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden z-10 transition-all transform scale-100 flex flex-col">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-700 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/30">
+        <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-border dark:border-border/80 bg-background dark:bg-background/30">
           <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/10 text-blue-600 dark:text-blue-400">
+            <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 text-primary dark:text-primary">
               <Sparkles className="w-4 h-4" />
             </div>
-            <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white dark:text-slate-50">
+            <h3 className="font-display font-bold text-sm text-text dark:text-slate-50">
               Create New CRM Lead
             </h3>
           </div>
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 dark:text-slate-200 dark:hover:text-slate-200 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text/50 hover:text-text/90 dark:text-text/30 dark:hover:text-text/30 hover:bg-surface dark:hover:bg-slate-700 dark:hover:bg-surface transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -93,7 +93,7 @@ export default function LeadModal({ isOpen, onClose }) {
           {/* Two column name/company */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label htmlFor="contactName" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+              <label htmlFor="contactName" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Contact Name *
               </label>
               <input
@@ -102,8 +102,8 @@ export default function LeadModal({ isOpen, onClose }) {
                 placeholder="e.g. John Doe"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border ${
-                  errors.name ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500'
+                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border ${
+                  errors.name ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-border dark:border-border focus:border-primary'
                 } rounded-lg outline-none transition-all`}
               />
               {errors.name && (
@@ -115,7 +115,7 @@ export default function LeadModal({ isOpen, onClose }) {
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="companyName" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+              <label htmlFor="companyName" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Company Name *
               </label>
               <input
@@ -124,8 +124,8 @@ export default function LeadModal({ isOpen, onClose }) {
                 placeholder="e.g. Acme Labs"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border ${
-                  errors.company ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500'
+                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border ${
+                  errors.company ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-border dark:border-border focus:border-primary'
                 } rounded-lg outline-none transition-all`}
               />
               {errors.company && (
@@ -139,7 +139,7 @@ export default function LeadModal({ isOpen, onClose }) {
 
           {/* Email field */}
           <div className="space-y-1.5">
-            <label htmlFor="emailAddress" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+            <label htmlFor="emailAddress" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
               Email Address *
             </label>
             <input
@@ -148,8 +148,8 @@ export default function LeadModal({ isOpen, onClose }) {
               placeholder="e.g. john@acme.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border ${
-                errors.email ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500'
+              className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border ${
+                errors.email ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-border dark:border-border focus:border-primary'
               } rounded-lg outline-none transition-all`}
             />
             {errors.email && (
@@ -163,7 +163,7 @@ export default function LeadModal({ isOpen, onClose }) {
           {/* Value and Owner grid */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label htmlFor="dealValue" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+              <label htmlFor="dealValue" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Deal Value (USD)
               </label>
               <input
@@ -172,19 +172,19 @@ export default function LeadModal({ isOpen, onClose }) {
                 placeholder="e.g. 15000"
                 value={formData.value}
                 onChange={(e) => setFormData({ ...formData, value: e.target.value })}
-                className="w-full min-h-[44px] px-3 text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500 rounded-lg outline-none transition-all"
+                className="w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border border-border dark:border-border focus:border-primary rounded-lg outline-none transition-all"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="salesOwner" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+              <label htmlFor="salesOwner" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Sales Owner
               </label>
               <select
                 id="salesOwner"
                 value={formData.owner}
                 onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
-                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background dark:bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {SALES_OWNERS.map((o) => (
                   <option key={o} value={o}>{o}</option>
@@ -196,14 +196,14 @@ export default function LeadModal({ isOpen, onClose }) {
           {/* Stage and Source grid */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label htmlFor="initialStage" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+              <label htmlFor="initialStage" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Initial CRM Stage
               </label>
               <select
                 id="initialStage"
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background dark:bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {LEAD_STAGES.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -212,14 +212,14 @@ export default function LeadModal({ isOpen, onClose }) {
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="acquisitionChannel" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+              <label htmlFor="acquisitionChannel" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Acquisition Channel
               </label>
               <select
                 id="acquisitionChannel"
                 value={formData.source}
                 onChange={(e) => setFormData({ ...formData, source: e.target.value })}
-                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-slate-800 dark:text-white dark:text-slate-200 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 rounded-lg outline-none cursor-pointer focus:border-blue-500"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background dark:bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {LEAD_SOURCES.map((src) => (
                   <option key={src} value={src}>{src}</option>
@@ -230,7 +230,7 @@ export default function LeadModal({ isOpen, onClose }) {
 
           {/* Notes field */}
           <div className="space-y-1.5">
-            <label htmlFor="notes" className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 dark:text-slate-400">
+            <label htmlFor="notes" className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
               Brief Description & Background notes
             </label>
             <textarea
@@ -239,23 +239,23 @@ export default function LeadModal({ isOpen, onClose }) {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className="w-full p-3 min-h-[88px] text-sm md:text-xs text-slate-900 dark:text-white dark:text-slate-100 bg-slate-50 dark:bg-slate-900 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 dark:border-slate-800 focus:border-blue-500 rounded-lg outline-none resize-none transition-all leading-normal"
+              className="w-full p-3 min-h-[88px] text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border border-border dark:border-border focus:border-primary rounded-lg outline-none resize-none transition-all leading-normal"
             />
           </div>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 pt-3 mt-auto md:mt-0 border-t border-slate-100 dark:border-slate-700 dark:border-slate-800/80">
+          <div className="flex items-center justify-end gap-3 pt-3 mt-auto md:mt-0 border-t border-slate-100 dark:border-border dark:border-border/80">
             <button
               type="button"
               onClick={onClose}
-              className="min-h-[44px] px-4 text-sm md:text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:bg-slate-850 rounded-lg transition-colors cursor-pointer"
+              className="min-h-[44px] px-4 text-sm md:text-xs font-semibold text-text/60 hover:text-slate-950 dark:text-text/50 dark:hover:text-text/20 hover:bg-surface dark:hover:bg-slate-700 dark:hover:bg-slate-850 rounded-lg transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="min-h-[44px] flex-1 md:flex-none px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm md:text-xs font-semibold rounded-lg transition-all active:scale-97 shadow-sm cursor-pointer"
+              className="min-h-[44px] flex-1 md:flex-none px-4 bg-primary hover:bg-primary text-text text-sm md:text-xs font-semibold rounded-lg transition-all active:scale-97 shadow-sm cursor-pointer"
             >
               Create Lead
             </button>

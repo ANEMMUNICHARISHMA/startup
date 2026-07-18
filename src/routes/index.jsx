@@ -28,11 +28,11 @@ function SkeletalLoading() {
     <div className="flex flex-col items-center justify-center min-h-[50vh] p-6 space-y-4">
       {/* Premium spinner wrapper containing custom spins animations */}
       <div className="relative w-10 h-10">
-        <div className="absolute inset-0 rounded-full border-2 border-blue-500/10 dark:border-blue-400/5" />
-        <div className="absolute inset-0 rounded-full border-t-2 border-blue-600 dark:border-blue-400 animate-spin" />
+        <div className="absolute inset-0 rounded-full border-2 border-primary/10 dark:border-primary/5" />
+        <div className="absolute inset-0 rounded-full border-t-2 border-primary dark:border-primary animate-spin" />
       </div>
       {/* Loading brief indicator */}
-      <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 tracking-wider uppercase animate-pulse">
+      <span className="text-xs font-semibold text-text/50 dark:text-text/60 tracking-wider uppercase animate-pulse">
         Retrieving Viewport...
       </span>
     </div>

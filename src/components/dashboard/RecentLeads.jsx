@@ -13,42 +13,42 @@ const RecentLeads = ({ leads = [] }) => {
   const recentLeads = [...leads].slice(0, 5);
 
   return (
-    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+    <div className="bg-surface p-4 sm:p-6 rounded-xl shadow-sm border border-border">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Recent Leads</h3>
-        <button className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">View All</button>
+        <h3 className="text-lg font-semibold text-text">Recent Leads</h3>
+        <button className="text-sm text-primary hover:text-blue-800 font-medium transition-colors">View All</button>
       </div>
       
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
-              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Name</th>
-              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Company</th>
-              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Status</th>
-              <th className="py-3 px-4 text-sm font-medium text-slate-500 dark:text-slate-400">Date Added</th>
+            <tr className="border-b border-border bg-background/50">
+              <th className="py-3 px-4 text-sm font-medium text-text/60">Name</th>
+              <th className="py-3 px-4 text-sm font-medium text-text/60">Company</th>
+              <th className="py-3 px-4 text-sm font-medium text-text/60">Status</th>
+              <th className="py-3 px-4 text-sm font-medium text-text/60">Date Added</th>
             </tr>
           </thead>
           <tbody>
             {recentLeads.length > 0 ? (
               recentLeads.map((lead, index) => (
-                <tr key={lead.id || index} className="border-b border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-700 transition-colors">
+                <tr key={lead.id || index} className="border-b border-slate-100 dark:border-border hover:bg-background dark:hover:bg-slate-700 transition-colors">
                   <td className="py-3 px-4">
-                    <p className="text-sm font-medium text-slate-900 dark:text-white">{lead.name}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{lead.email}</p>
+                    <p className="text-sm font-medium text-text">{lead.name}</p>
+                    <p className="text-xs text-text/60">{lead.email}</p>
                   </td>
-                  <td className="py-3 px-4 text-sm text-slate-700 dark:text-slate-200">{lead.company}</td>
+                  <td className="py-3 px-4 text-sm text-text/90 dark:text-text/30">{lead.company}</td>
                   <td className="py-3 px-4">
                     <StatusBadge status={lead.status} />
                   </td>
-                  <td className="py-3 px-4 text-sm text-slate-500 dark:text-slate-400">
+                  <td className="py-3 px-4 text-sm text-text/60">
                     {lead.createdAt ? new Date(lead.createdAt).toLocaleDateString() : 'N/A'}
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
+                <td colSpan="4" className="py-8 text-center text-sm text-text/60">
                   No recent leads found.
                 </td>
               </tr>

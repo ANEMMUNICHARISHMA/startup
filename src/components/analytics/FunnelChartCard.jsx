@@ -17,9 +17,9 @@ export const FunnelChartCard = ({ data }) => {
     if (active && payload && payload.length) {
       const stage = payload[0].payload;
       return (
-        <div className="bg-slate-200 dark:bg-[#1F2937] p-3 border border-slate-700 shadow-xl rounded-lg">
-          <p className="font-semibold text-slate-900 dark:text-white">{stage.name}</p>
-          <p className="text-slate-300 text-sm mt-1">{stage.value} Leads</p>
+        <div className="bg-surface/50 p-3 border border-border shadow-xl rounded-lg">
+          <p className="font-semibold text-text">{stage.name}</p>
+          <p className="text-text/40 text-sm mt-1">{stage.value} Leads</p>
           {stage.name !== 'New' && (
             <p className="text-xs font-medium text-emerald-500 mt-1">
               Conversion: {stage.conversion}%
@@ -32,10 +32,10 @@ export const FunnelChartCard = ({ data }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#131826] p-6 rounded-2xl border border-slate-200 dark:border-[#1F2937] shadow-sm h-full flex flex-col">
+    <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm h-full flex flex-col">
       <div className="mb-6">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-wide">Sales Conversion Funnel</h3>
-        <p className="text-xs text-slate-500 mt-1">Track stage conversion efficiency and funnel leakage.</p>
+        <h3 className="text-sm font-bold text-text tracking-wide">Sales Conversion Funnel</h3>
+        <p className="text-xs text-text/60 mt-1">Track stage conversion efficiency and funnel leakage.</p>
       </div>
       
       <div className="flex-1 flex flex-col md:flex-row items-center">
@@ -68,7 +68,7 @@ export const FunnelChartCard = ({ data }) => {
               <div key={stage.name} className="flex flex-col relative pl-4">
                 {/* Timeline line */}
                 {index !== data.length - 1 && (
-                  <div className="absolute left-[3px] top-4 bottom-[-24px] w-[1px] bg-slate-200 dark:bg-[#1F2937]" />
+                  <div className="absolute left-[3px] top-4 bottom-[-24px] w-[1px] bg-surface/50" />
                 )}
                 {/* Dot */}
                 <div 
@@ -77,15 +77,15 @@ export const FunnelChartCard = ({ data }) => {
                 />
                 
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-slate-900 dark:text-white font-bold">{stage.name}</span>
-                  <div className="text-slate-400">
-                    <span className="text-slate-900 dark:text-white font-bold mr-1">{stage.value}</span>
+                  <span className="text-text font-bold">{stage.name}</span>
+                  <div className="text-text/50">
+                    <span className="text-text font-bold mr-1">{stage.value}</span>
                     ({overallPercentage}%)
                   </div>
                 </div>
 
                 {/* Progress Bar */}
-                <div className="w-full h-1.5 bg-slate-200 dark:bg-[#1F2937] rounded-full overflow-hidden mt-1 mb-1.5">
+                <div className="w-full h-1.5 bg-surface/50 rounded-full overflow-hidden mt-1 mb-1.5">
                   <div 
                     className="h-full rounded-full" 
                     style={{ width: `${overallPercentage}%`, backgroundColor: color }} 
@@ -93,7 +93,7 @@ export const FunnelChartCard = ({ data }) => {
                 </div>
                 
                 {/* Subtext */}
-                <div className="flex items-center justify-between text-[10px] font-medium text-slate-500">
+                <div className="flex items-center justify-between text-[10px] font-medium text-text/60">
                   {index > 0 ? (
                     <>
                       <span>Conv: {stage.conversion}% from prev</span>

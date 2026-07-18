@@ -83,30 +83,30 @@ export default function Leads() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-8">
       <Toaster position="top-right" />
       
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Leads</h1>
-            <p className="text-slate-500 dark:text-slate-400 mt-1">Manage and track your prospective customers.</p>
+            <h1 className="text-2xl font-bold text-text">Leads</h1>
+            <p className="text-text/60 mt-1">Manage and track your prospective customers.</p>
           </div>
           
           <div className="flex items-center gap-3 w-full sm:w-auto">
             {/* View Toggle */}
-            <div className="hidden md:flex items-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-1">
+            <div className="hidden md:flex items-center bg-surface border border-border rounded-lg p-1">
               <button
                 onClick={() => setViewMode('table')}
-                className={`p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-md transition-colors ${viewMode === 'table' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:text-slate-300'}`}
+                className={`p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-md transition-colors ${viewMode === 'table' ? 'bg-surface text-text shadow-sm' : 'text-text/50 hover:text-text/70 dark:text-text/40'}`}
                 aria-label="Table view"
               >
                 <List size={18} />
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-md transition-colors ${viewMode === 'grid' ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm' : 'text-slate-400 hover:text-slate-600 dark:text-slate-300'}`}
+                className={`p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-md transition-colors ${viewMode === 'grid' ? 'bg-surface text-text shadow-sm' : 'text-text/50 hover:text-text/70 dark:text-text/40'}`}
                 aria-label="Grid view"
               >
                 <LayoutGrid size={18} />
@@ -115,7 +115,7 @@ export default function Leads() {
 
             <button
               onClick={() => onOpenAddLead ? onOpenAddLead() : handleOpenModal()}
-              className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-primary hover:bg-primary text-text px-4 py-2 rounded-lg font-medium transition-colors"
             >
               <Plus size={18} />
               Add Lead
@@ -163,17 +163,17 @@ export default function Leads() {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm"
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/50 backdrop-blur-sm"
              aria-labelledby="modal-title" role="dialog" aria-modal="true">
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+          <div className="bg-surface rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-5">
-                <h2 id="modal-title" className="text-xl font-bold text-slate-900 dark:text-white">
+                <h2 id="modal-title" className="text-xl font-bold text-text">
                   {selectedLead ? 'Edit Lead' : 'Add New Lead'}
                 </h2>
                 <button 
                   onClick={handleCloseModal} 
-                  className="text-slate-400 hover:text-slate-600 dark:text-slate-300 p-1"
+                  className="text-text/50 hover:text-text/70 dark:text-text/40 p-1"
                   aria-label="Close modal"
                 >
                   <span className="text-2xl leading-none" aria-hidden="true">&times;</span>

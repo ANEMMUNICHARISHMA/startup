@@ -10,21 +10,21 @@ const formatCurrency = (value) => {
 };
 
 const StatCard = ({ title, value, icon: Icon, trend, trendLabel, iconColor, trendColor }) => (
-  <div className="bg-white dark:bg-[#131826] rounded-xl border border-slate-200 dark:border-[#1F2937] p-5 shadow-sm hover:border-slate-700 transition-colors">
+  <div className="bg-surface rounded-xl border border-border p-5 shadow-sm hover:border-border transition-colors">
     <div className="flex items-start justify-between mb-4">
-      <p className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">{title}</p>
+      <p className="text-[11px] font-bold tracking-wider text-text/50 uppercase">{title}</p>
       <Icon size={16} className={iconColor} />
     </div>
     <div>
-      <h4 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">{value}</h4>
+      <h4 className="text-3xl font-bold text-text tracking-tight">{value}</h4>
     </div>
     {trend !== undefined && (
       <div className="mt-4 flex items-center text-[11px] font-medium">
-        <span className={`${trendColor} bg-slate-900/50 px-1.5 py-0.5 rounded mr-2`}>
+        <span className={`${trendColor} bg-background/50 px-1.5 py-0.5 rounded mr-2`}>
           {trend > 0 ? '+' : ''}{trend}% 
           <TrendingUp size={10} className="inline ml-1 mb-0.5" />
         </span>
-        <span className="text-slate-500">{trendLabel || 'vs previous period'}</span>
+        <span className="text-text/60">{trendLabel || 'vs previous period'}</span>
       </div>
     )}
   </div>
@@ -38,7 +38,7 @@ export const StatsCards = ({ metrics }) => {
         value={metrics.totalLeads} 
         icon={Users} 
         trend={400} 
-        iconColor="text-blue-500"
+        iconColor="text-primary"
         trendColor="text-emerald-500" 
       />
       <StatCard 
@@ -73,8 +73,8 @@ export const StatsCards = ({ metrics }) => {
         icon={Clock} 
         trend={0} 
         trendLabel="(time to result)"
-        iconColor="text-purple-500"
-        trendColor="text-slate-400" 
+        iconColor="text-accent"
+        trendColor="text-text/50" 
       />
       <StatCard 
         title="Lost Rate" 

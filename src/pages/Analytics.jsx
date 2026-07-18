@@ -29,14 +29,14 @@ export default function Analytics() {
   }, [dateRange]);
 
   return (
-    <div className="p-4 md:p-8 bg-slate-50 dark:bg-slate-900 dark:bg-[#0B0F19] min-h-screen text-slate-900 dark:text-white dark:text-slate-100">
+    <div className="p-4 md:p-8 bg-background dark:bg-[#0B0F19] min-h-screen text-text dark:text-text/20">
       <div className="max-w-[1400px] mx-auto space-y-6">
         
         {/* Header & Filters */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white dark:text-slate-100 tracking-tight">Analytics Dashboard</h1>
-            <p className="text-slate-400 mt-1 text-sm">Track sales performance and growth trends.</p>
+            <h1 className="text-2xl font-bold text-text dark:text-text/20 tracking-tight">Analytics Dashboard</h1>
+            <p className="text-text/50 mt-1 text-sm">Track sales performance and growth trends.</p>
           </div>
           <AnalyticsFilters dateRange={dateRange} setDateRange={setDateRange} />
         </div>
