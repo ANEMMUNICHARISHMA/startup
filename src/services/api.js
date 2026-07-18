@@ -2,7 +2,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
+  baseURL: import.meta.env.VITE_API_URL || 'https://backendproject-production-8c00.up.railway.app'
 });
 
 // Request Interceptor: Automatically add the Authorization header
