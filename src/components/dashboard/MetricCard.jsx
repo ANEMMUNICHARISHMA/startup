@@ -23,7 +23,7 @@ export default function MetricCard({ title, value, trend, trendType, description
   const sparklinePath = getSparklinePath(sparklineData);
 
   return (
-    <div className="relative overflow-hidden bg-surface dark:bg-[#111827] border border-border dark:border-border/80 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group">
+    <div className="relative overflow-hidden bg-surface border border-border dark:border-border/80 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group">
       {/* Background radial highlight */}
       <div className="absolute -right-10 -top-10 w-28 h-28 rounded-full bg-primary/5 dark:bg-blue-400/5 blur-xl group-hover:scale-125 transition-transform duration-500" />
       

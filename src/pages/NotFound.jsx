@@ -20,7 +20,7 @@ export default function NotFound() {
         <div className="absolute inset-0 bg-primary/20 dark:bg-blue-400/10 blur-2xl rounded-full scale-125" />
         
         {/* Main circular icon card */}
-        <div className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-surface dark:bg-[#111827] border border-border dark:border-border shadow-lg text-primary dark:text-primary">
+        <div className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-surface border border-border dark:border-border shadow-lg text-primary dark:text-primary">
           <AlertOctagon className="w-10 h-10" />
         </div>
       </div>

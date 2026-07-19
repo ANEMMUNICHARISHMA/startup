@@ -76,10 +76,10 @@ export default function LeadDrawer({ leadId, onClose }) {
       />
 
       {/* Drawer content panel */}
-      <div className="relative w-full max-w-xl h-full bg-surface dark:bg-[#0f172a] border-l border-border dark:border-border shadow-2xl flex flex-col z-10 transition-transform duration-300 ease-out transform translate-x-0">
+      <div className="relative w-full max-w-xl h-full bg-surface border-l border-border dark:border-border shadow-2xl flex flex-col z-10 transition-transform duration-300 ease-out transform translate-x-0">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-border dark:border-border bg-background dark:bg-background/50">
+        <div className="flex items-center justify-between p-4 border-b border-border dark:border-border bg-background/50">
           <div className="flex items-center gap-2">
             <div className="p-2 rounded-lg bg-primary/10 dark:bg-blue-950/40 text-primary dark:text-primary border border-blue-100/50 dark:border-blue-900/20">
               <Building2 className="w-4 h-4" />
@@ -125,7 +125,7 @@ export default function LeadDrawer({ leadId, onClose }) {
               <select
                 value={lead.stage}
                 onChange={handleStageChange}
-                className="w-full h-8.5 px-2 text-xs font-semibold text-text dark:text-text dark:text-text/30 bg-surface dark:bg-[#111827] border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
+                className="w-full h-8.5 px-2 text-xs font-semibold text-text dark:text-text dark:text-text/30 bg-surface border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {STAGES.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -144,7 +144,7 @@ export default function LeadDrawer({ leadId, onClose }) {
                   type="number"
                   value={lead.value}
                   onChange={handleValueChange}
-                  className="w-full h-8.5 pl-7 pr-3 text-xs font-semibold text-text dark:text-text dark:text-text/30 bg-surface dark:bg-[#111827] border border-border dark:border-border rounded-lg outline-none focus:border-primary"
+                  className="w-full h-8.5 pl-7 pr-3 text-xs font-semibold text-text dark:text-text dark:text-text/30 bg-surface border border-border dark:border-border rounded-lg outline-none focus:border-primary"
                 />
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function LeadDrawer({ leadId, onClose }) {
               <select
                 value={lead.owner}
                 onChange={handleOwnerChange}
-                className="w-full h-8.5 px-2 text-xs font-medium text-text dark:text-text dark:text-text/30 bg-surface dark:bg-[#111827] border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
+                className="w-full h-8.5 px-2 text-xs font-medium text-text dark:text-text dark:text-text/30 bg-surface border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {OWNERS.map((o) => (
                   <option key={o} value={o}>{o}</option>
@@ -170,7 +170,7 @@ export default function LeadDrawer({ leadId, onClose }) {
               <label className="text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
                 Acquisition Channel
               </label>
-              <div className="w-full h-8.5 flex items-center px-3 text-xs font-semibold text-text/90 dark:text-text/30 dark:text-text/40 bg-surface dark:bg-surface/80 rounded-lg border border-transparent">
+              <div className="w-full h-8.5 flex items-center px-3 text-xs font-semibold text-text/90 dark:text-text/30 dark:text-text/40 bg-surface/80 rounded-lg border border-transparent">
                 {lead.source}
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function LeadDrawer({ leadId, onClose }) {
               onChange={(e) => setNotesText(e.target.value)}
               onBlur={handleNotesBlur}
               rows={4}
-              className="w-full p-3 text-xs text-text dark:text-text dark:text-text/30 placeholder-slate-400 dark:placeholder-slate-500 bg-background hover:bg-surface dark:hover:bg-slate-700/50 dark:bg-[#111827]/40 dark:hover:bg-[#111827]/60 border border-border dark:border-border/85 focus:border-primary dark:focus:border-primary rounded-lg outline-none resize-none transition-all leading-relaxed"
+              className="w-full p-3 text-xs text-text dark:text-text dark:text-text/30 placeholder-slate-400 dark:placeholder-slate-500 bg-background hover:bg-surface dark:hover:bg-slate-700/50 dark:bg-surface/40 dark:hover:bg-[#111827]/60 border border-border dark:border-border/85 focus:border-primary dark:focus:border-primary rounded-lg outline-none resize-none transition-all leading-relaxed"
             />
           </div>
 
@@ -224,7 +224,7 @@ export default function LeadDrawer({ leadId, onClose }) {
                 placeholder="Log call notes, email threads, or activities..."
                 value={newLog}
                 onChange={(e) => setNewLog(e.target.value)}
-                className="flex-1 h-8.5 px-3 text-xs text-text dark:text-text/20 placeholder-slate-400 dark:placeholder-slate-500 bg-background dark:bg-background border border-border dark:border-border focus:border-primary dark:focus:border-primary rounded-lg outline-none transition-all"
+                className="flex-1 h-8.5 px-3 text-xs text-text dark:text-text/20 placeholder-slate-400 dark:placeholder-slate-500 bg-background border border-border dark:border-border focus:border-primary dark:focus:border-primary rounded-lg outline-none transition-all"
               />
               <button
                 type="submit"
@@ -239,7 +239,7 @@ export default function LeadDrawer({ leadId, onClose }) {
               {lead.history && lead.history.slice().reverse().map((log) => (
                 <div key={log.id} className="relative group/log">
                   {/* Timeline dot */}
-                  <div className={`absolute -left-[19.5px] top-1 w-2.5 h-2.5 rounded-full ring-4 ring-white dark:ring-[#0f172a] ${
+                  <div className={`absolute -left-[19.5px] top-1 w-2.5 h-2.5 rounded-full ring-4 ring-white dark:ring-background ${
                     log.type === 'Created' 
                       ? 'bg-primary dark:bg-primary' 
                       : log.type === 'Stage Changed' 

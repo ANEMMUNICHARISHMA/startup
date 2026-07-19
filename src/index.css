@@ -3,23 +3,23 @@
 @import "tailwindcss";
 
 :root {
-  --color-brand-background: #FAF7FD;
-  --color-brand-surface: #F0EAF8;
-  --color-brand-primary: #6B46C1;
-  --color-brand-secondary: #9272D4;
-  --color-brand-accent: #FF8AAE;
-  --color-brand-text: #241A38;
-  --color-brand-border: #DDD3ED;
+  --color-brand-background: #F8FAFC;
+  --color-brand-surface: #EDF2F7;
+  --color-brand-primary: #3B5CCC;
+  --color-brand-secondary: #5E81F4;
+  --color-brand-accent: #FF8F5A;
+  --color-brand-text: #1A2330;
+  --color-brand-border: #D9E2EF;
 }
 
 .dark {
-  --color-brand-background: #171122;
-  --color-brand-surface: #241B35;
-  --color-brand-primary: #A885FF;
-  --color-brand-secondary: #C4ABFF;
-  --color-brand-accent: #FFA6C2;
-  --color-brand-text: #F8F6FC;
-  --color-brand-border: #3C3154;
+  --color-brand-background: #111827;
+  --color-brand-surface: #1B2435;
+  --color-brand-primary: #6C8DFF;
+  --color-brand-secondary: #9EB4FF;
+  --color-brand-accent: #FFA26E;
+  --color-brand-text: #F8FAFC;
+  --color-brand-border: #2E3A52;
 }
 
 @theme {
@@ -34,7 +34,6 @@
   --color-text: var(--color-brand-text);
   --color-border: var(--color-brand-border);
   
-  /* Retain existing semantic colors for specific alerts if needed, but the prompt says to use the new palette everywhere. We will keep success/warning/danger as they are not explicitly mentioned in the new palette to be overridden, wait, the prompt says "Update every UI element consistently... Success colors, Warning colors, Error colors...". But the new palette doesn't define success/warning/error colors. I will keep existing ones. */
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
@@ -53,21 +52,21 @@
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--color-border);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
+  background: var(--color-border);
   border-radius: 9999px;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: var(--color-secondary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
+  background: var(--color-secondary);
 }
 
 /* Glassmorphism card utility */
@@ -78,7 +77,7 @@
 }
 
 .dark .glass-panel {
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(27, 36, 53, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }

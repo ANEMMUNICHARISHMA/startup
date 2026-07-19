@@ -41,7 +41,7 @@ export const LeadSourceChart = ({ data }) => {
               tick={{ fill: CHART_COLORS.text, fontSize: 11 }}
               width={80}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{fill: '#1E293B', opacity: 0.4}} />
+            <Tooltip content={<CustomTooltip />} cursor={{fill: 'var(--color-border)', opacity: 0.4}} />
             <Bar 
               dataKey="count" 
               radius={[0, 4, 4, 0]}

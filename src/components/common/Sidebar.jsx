@@ -40,7 +40,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
   return (
     <aside
       // Manage responsive dimensions: remains static on tablet/desktop screens, drawer toggles on mobile
-      className={`fixed top-0 bottom-0 left-0 z-40 flex flex-col w-64 border-r border-border dark:border-border/80 bg-background/90 dark:bg-[#0b0f19]/90 backdrop-blur-md transition-all duration-300 ease-in-out md:translate-x-0 ${
+      className={`fixed top-0 bottom-0 left-0 z-40 flex flex-col w-64 border-r border-border dark:border-border/80 bg-background/90 dark:bg-background/90 backdrop-blur-md transition-all duration-300 ease-in-out md:translate-x-0 ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
@@ -149,7 +149,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
       </nav>
 
       {/* Sidebar Footer containing global dark/light toggles */}
-      <div className="p-3 border-t border-border dark:border-border/80 bg-surface/50 dark:bg-[#090d16]/30">
+      <div className="p-3 border-t border-border dark:border-border/80 bg-surface/50 dark:bg-background/30">
         <button
           onClick={toggleTheme}
           className="flex items-center justify-between w-full px-3 py-2 text-xs font-medium text-text/70 dark:text-text/40 dark:text-text/50 hover:text-text dark:hover:text-text/30 hover:bg-surface/60/50 dark:hover:bg-surface/80 border border-border/80 dark:border-border rounded-lg transition-all cursor-pointer"

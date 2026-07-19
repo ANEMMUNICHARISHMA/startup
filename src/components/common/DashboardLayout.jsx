@@ -31,7 +31,7 @@ export default function DashboardLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-background dark:bg-[#090d16] transition-colors duration-200">
+    <div className="min-h-screen bg-background transition-colors duration-200">
       {/* Sidebar navigation */}
       <Sidebar isOpen={sidebarOpen} toggleSidebar={setSidebarOpen} />
 

@@ -24,7 +24,7 @@ export default function TasksWidget() {
   };
 
   return (
-    <div className="bg-surface dark:bg-[#111827] border border-border dark:border-border/80 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col h-full">
+    <div className="bg-surface border border-border dark:border-border/80 rounded-xl p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col h-full">
       <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-border dark:border-border/80">
         <div>
           <h3 className="font-display font-semibold text-sm text-text dark:text-slate-50">
@@ -50,7 +50,7 @@ export default function TasksWidget() {
             <div
               key={task.id}
               className={`flex items-start justify-between gap-3 p-2.5 rounded-lg border border-slate-100 dark:border-border dark:border-border/50 hover:bg-background dark:hover:bg-slate-700/50 dark:hover:bg-surface/30 transition-all ${
-                task.done ? 'bg-background/30 dark:bg-surface/10' : 'bg-surface dark:bg-[#111827]'
+                task.done ? 'bg-background/30 dark:bg-surface/10' : 'bg-surface'
               }`}
             >
               <div className="flex items-start gap-2.5">
@@ -117,7 +117,7 @@ export default function TasksWidget() {
           <select
             value={selectedLeadId}
             onChange={(e) => setSelectedLeadId(e.target.value)}
-            className="flex-1 h-7.5 px-2 text-[11px] text-text/60 dark:text-text/50 bg-background dark:bg-background border border-border dark:border-border rounded-md outline-none cursor-pointer"
+            className="flex-1 h-7.5 px-2 text-[11px] text-text/60 dark:text-text/50 bg-background border border-border dark:border-border rounded-md outline-none cursor-pointer"
           >
             <option value="">Link to Lead (None)</option>
             {leads.map((lead) => (
@@ -131,7 +131,7 @@ export default function TasksWidget() {
           <select
             value={taskDate}
             onChange={(e) => setTaskDate(e.target.value)}
-            className="h-7.5 px-2 text-[11px] text-text/60 dark:text-text/50 bg-background dark:bg-background border border-border dark:border-border rounded-md outline-none cursor-pointer"
+            className="h-7.5 px-2 text-[11px] text-text/60 dark:text-text/50 bg-background border border-border dark:border-border rounded-md outline-none cursor-pointer"
           >
             <option value="Today">Today</option>
             <option value="Tomorrow">Tomorrow</option>

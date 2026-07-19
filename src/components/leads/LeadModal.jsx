@@ -45,8 +45,8 @@ export default function LeadModal({ isOpen, onClose }) {
     toast.success(`Successfully added lead for ${newLead.company}!`, {
       style: {
         borderRadius: '10px',
-        background: '#1e293b',
-        color: '#f8fafc',
+        background: 'var(--color-border)',
+        color: 'var(--color-text)',
         fontSize: '13px'
       }
     });
@@ -65,10 +65,10 @@ export default function LeadModal({ isOpen, onClose }) {
       />
 
       {/* Modal Dialog */}
-      <div className="relative bg-surface dark:bg-[#0f172a] border-0 md:border border-border dark:border-border/80 w-full min-h-screen md:min-h-0 md:max-w-lg rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden z-10 transition-all transform scale-100 flex flex-col">
+      <div className="relative bg-surface border-0 md:border border-border dark:border-border/80 w-full min-h-screen md:min-h-0 md:max-w-lg rounded-none md:rounded-2xl shadow-none md:shadow-2xl overflow-hidden z-10 transition-all transform scale-100 flex flex-col">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-border dark:border-border/80 bg-background dark:bg-background/30">
+        <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-border dark:border-border/80 bg-background/30">
           <div className="flex items-center gap-2">
             <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 text-primary dark:text-primary">
               <Sparkles className="w-4 h-4" />
@@ -102,7 +102,7 @@ export default function LeadModal({ isOpen, onClose }) {
                 placeholder="e.g. John Doe"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border ${
+                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background/40 border ${
                   errors.name ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-border dark:border-border focus:border-primary'
                 } rounded-lg outline-none transition-all`}
               />
@@ -124,7 +124,7 @@ export default function LeadModal({ isOpen, onClose }) {
                 placeholder="e.g. Acme Labs"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border ${
+                className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background/40 border ${
                   errors.company ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-border dark:border-border focus:border-primary'
                 } rounded-lg outline-none transition-all`}
               />
@@ -148,7 +148,7 @@ export default function LeadModal({ isOpen, onClose }) {
               placeholder="e.g. john@acme.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border ${
+              className={`w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background/40 border ${
                 errors.email ? 'border-red-600 focus:border-red-600 dark:border-red-500 dark:focus:border-red-500' : 'border-border dark:border-border focus:border-primary'
               } rounded-lg outline-none transition-all`}
             />
@@ -172,7 +172,7 @@ export default function LeadModal({ isOpen, onClose }) {
                 placeholder="e.g. 15000"
                 value={formData.value}
                 onChange={(e) => setFormData({ ...formData, value: e.target.value })}
-                className="w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border border-border dark:border-border focus:border-primary rounded-lg outline-none transition-all"
+                className="w-full min-h-[44px] px-3 text-sm md:text-xs text-text dark:text-text/20 bg-background/40 border border-border dark:border-border focus:border-primary rounded-lg outline-none transition-all"
               />
             </div>
 
@@ -184,7 +184,7 @@ export default function LeadModal({ isOpen, onClose }) {
                 id="salesOwner"
                 value={formData.owner}
                 onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
-                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background dark:bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {SALES_OWNERS.map((o) => (
                   <option key={o} value={o}>{o}</option>
@@ -203,7 +203,7 @@ export default function LeadModal({ isOpen, onClose }) {
                 id="initialStage"
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background dark:bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {LEAD_STAGES.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -219,7 +219,7 @@ export default function LeadModal({ isOpen, onClose }) {
                 id="acquisitionChannel"
                 value={formData.source}
                 onChange={(e) => setFormData({ ...formData, source: e.target.value })}
-                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background dark:bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
+                className="w-full min-h-[44px] px-2 text-sm md:text-xs text-text dark:text-text dark:text-text/30 bg-background/40 border border-border dark:border-border rounded-lg outline-none cursor-pointer focus:border-primary"
               >
                 {LEAD_SOURCES.map((src) => (
                   <option key={src} value={src}>{src}</option>
@@ -239,7 +239,7 @@ export default function LeadModal({ isOpen, onClose }) {
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               rows={3}
-              className="w-full p-3 min-h-[88px] text-sm md:text-xs text-text dark:text-text/20 bg-background dark:bg-background/40 border border-border dark:border-border focus:border-primary rounded-lg outline-none resize-none transition-all leading-normal"
+              className="w-full p-3 min-h-[88px] text-sm md:text-xs text-text dark:text-text/20 bg-background/40 border border-border dark:border-border focus:border-primary rounded-lg outline-none resize-none transition-all leading-normal"
             />
           </div>
           </div>

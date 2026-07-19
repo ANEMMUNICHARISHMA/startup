@@ -45,7 +45,7 @@ export const LineChartCard = ({ data }) => {
               dataKey="conversionRate" 
               stroke={CHART_COLORS.success} 
               strokeWidth={3}
-              dot={{ r: 4, strokeWidth: 2, fill: '#131826', stroke: CHART_COLORS.success }}
+              dot={{ r: 4, strokeWidth: 2, fill: 'var(--color-background)', stroke: CHART_COLORS.success }}
               activeDot={{ r: 6, stroke: CHART_COLORS.success, strokeWidth: 2, fill: '#fff' }}
               animationDuration={1500}
             />

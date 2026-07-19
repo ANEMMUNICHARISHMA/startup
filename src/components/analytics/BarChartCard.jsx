@@ -38,7 +38,7 @@ export const BarChartCard = ({ data }) => {
               tick={{ fill: CHART_COLORS.text, fontSize: 11 }}
               tickFormatter={(val) => Math.floor(val)}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{fill: '#1E293B', opacity: 0.4}} />
+            <Tooltip content={<CustomTooltip />} cursor={{fill: 'var(--color-border)', opacity: 0.4}} />
             <Bar 
               dataKey="count" 
               fill={CHART_COLORS.primary} 
