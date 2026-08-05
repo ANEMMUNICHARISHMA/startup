@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
       }
       try {
         const response = await authService.getProfile();
-        if (response && response.data) {
-          setUser(response.data);
+        if (response && response.user) {
+          setUser(response.user);
         }
       } catch (error) {
         console.error('Error fetching profile:', error);
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       if (response && response.token) {
         setToken(response.token);
         localStorage.setItem('crm-token', response.token);
-        setUser(response.data); // Assuming backend returns { success: true, token, data: user }
+        setUser(response.user);
         toast.success('Successfully logged in!');
         return { success: true };
       } else {
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
       if (response && response.token) {
         setToken(response.token);
         localStorage.setItem('crm-token', response.token);
-        setUser(response.data);
+        setUser(response.user);
         toast.success('Account created successfully!');
         return { success: true };
       } else {

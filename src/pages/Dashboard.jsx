@@ -19,9 +19,17 @@ const Dashboard = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-6 sm:mb-8">
-        <h1 className="text-xl sm:text-2xl font-bold text-text">Dashboard</h1>
-        <p className="text-sm sm:text-base text-text/60 mt-1">Welcome back! Here's what's happening with your leads today.</p>
+      <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold text-text">Workspace Dashboard</h1>
+          <p className="text-sm sm:text-base text-text/60 mt-1">Review your startup pipeline conversions, recent activities, and metrics.</p>
+        </div>
+        <div className="flex items-center gap-2 px-4 py-2 bg-surface border border-border rounded-lg text-sm text-text/80 shadow-sm whitespace-nowrap">
+          <svg className="w-4 h-4 text-text/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' })}
+        </div>
       </div>
 
       {/* Stats Cards - Responsive Grid: 1 col mobile, 2 col tablet, 4 col desktop */}
@@ -56,22 +64,20 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Middle Section - Pipeline Overview and Quick Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
-        <div className="lg:col-span-2">
+      {/* Bottom Section - 3 Columns for Pipeline Overview, Recent Leads, Quick Actions */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="lg:col-span-1 flex flex-col">
           <PipelineOverview leads={leads} />
         </div>
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 flex flex-col">
+          <RecentLeads leads={leads} />
+        </div>
+        <div className="lg:col-span-1 flex flex-col">
           <QuickActions 
             onAddLead={onOpenAddLead}
             onViewAll={() => navigate('/leads')}
           />
         </div>
-      </div>
-
-      {/* Bottom Section - Recent Leads */}
-      <div className="grid grid-cols-1 gap-4 sm:gap-6">
-        <RecentLeads leads={leads} />
       </div>
     </div>
   );

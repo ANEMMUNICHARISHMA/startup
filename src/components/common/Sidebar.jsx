@@ -54,11 +54,8 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
           <div>
             {/* Title headers */}
             <h2 className="font-display font-semibold text-sm text-text dark:text-text/20 leading-tight">
-              CRM Lite
+              Startup CRM LITE
             </h2>
-            <span className="text-[10px] font-medium text-text/60 dark:text-text/50">
-              Acme Workspace
-            </span>
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -114,29 +111,6 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
             </NavLink>
           );
         })}
-
-        {/* System Settings navigation grouping links */}
-        <div className="pt-6 px-2 mb-2 text-[10px] font-semibold uppercase tracking-wider text-text/50 dark:text-text/60">
-          System
-        </div>
-        
-        {/* Mock settings trigger */}
-        <a 
-          href="#settings" 
-          className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text/70 dark:text-text/40 dark:text-text/50 hover:text-text dark:hover:text-text/30 hover:bg-surface dark:hover:bg-slate-700 dark:hover:bg-surface/50 border border-transparent rounded-lg transition-colors group"
-        >
-          <Settings className="w-4 h-4 text-text/50 dark:text-text/60 group-hover:text-text/70 dark:text-text/40 dark:group-hover:text-text/40" />
-          <span>Settings</span>
-        </a>
-
-        {/* Mock support and docs links */}
-        <a 
-          href="#help" 
-          className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text/70 dark:text-text/40 dark:text-text/50 hover:text-text dark:hover:text-text/30 hover:bg-surface dark:hover:bg-slate-700 dark:hover:bg-surface/50 border border-transparent rounded-lg transition-colors group"
-        >
-          <HelpCircle className="w-4 h-4 text-text/50 dark:text-text/60 group-hover:text-text/70 dark:text-text/40 dark:group-hover:text-text/40" />
-          <span>Support & Docs</span>
-        </a>
 
         {/* Logout Action */}
         <button 

@@ -8,9 +8,11 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { useLeads } from '../../context/LeadContext';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function Header({ toggleSidebar, onOpenAddLead, title }) {
   const { leads } = useLeads();
+  const { user } = useAuth();
   const [searchValue, setSearchValue] = useState('');
 
   return (
@@ -26,8 +28,8 @@ export default function Header({ toggleSidebar, onOpenAddLead, title }) {
         </button>
         
         {/* Dynamic Page Title */}
-        <h1 className="font-display font-bold text-base text-text dark:text-slate-50">
-          {title}
+        <h1 className="font-display font-medium text-sm text-text/80 dark:text-text/70 flex items-center gap-2">
+          <span className="text-primary/60">✨</span> Welcome back, {user?.name || 'User'}
         </h1>
       </div>
 
@@ -80,20 +82,17 @@ export default function Header({ toggleSidebar, onOpenAddLead, title }) {
         {/* Profile Card */}
         <div className="flex items-center gap-2 cursor-pointer hover:bg-background dark:hover:bg-slate-700 dark:hover:bg-surface/30 p-1 min-w-[44px] min-h-[44px] rounded-lg transition-colors">
           <div className="relative flex items-center justify-center h-full w-full">
-            <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&width=100&auto=format&fit=crop"
-              alt="User profile photo"
-              className="w-8 h-8 md:w-7 md:h-7 rounded-full object-cover border border-border dark:border-border"
-            />
+            <div className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-surface-dark border border-border dark:border-border flex items-center justify-center">
+              <span className="text-[10px] font-bold text-text dark:text-text/60">
+                {user?.name ? user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'U'}
+              </span>
+            </div>
             <div className="absolute bottom-1 right-1 md:bottom-0 md:right-0 w-2.5 h-2.5 md:w-2 md:h-2 rounded-full bg-emerald-500 ring-1.5 ring-white dark:ring-background" />
           </div>
           <div className="hidden lg:block text-left">
             <p className="text-xs font-semibold text-text dark:text-text/20 leading-none">
-              Sophia M.
+              {user?.name || 'User'}
             </p>
-            <span className="text-[9px] font-medium text-text/50 dark:text-text/60">
-              Admin Owner
-            </span>
           </div>
           <ChevronDown className="hidden lg:block w-3 h-3 text-text/50" />
         </div>
